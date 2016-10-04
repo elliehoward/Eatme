@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>EatMe add a meal</title>
-  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -23,7 +24,25 @@
   </nav>
 
 
-  
+
+  <h2>Please fill out the name of the meal, and then <br> fill out the ingredients separated by commas. <br> Then choose the type of meal that it is.</h2>
+  <div class="input-group">
+    <input id="meal-name" type="text" class="form-control" placeholder="Name of the meal..." aria-describedby="basic-addon1">
+  </div>
+  <div class="input-group">
+    <input id="custom-ingredients" type="text" class="form-control" placeholder="Ingredients..." aria-describedby="basic-addon1">
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="meal-type" value="breakfast">Breakfast</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="meal-type" value="lunch">Lunch</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="meal-type" value="dinner">Dinner</label>
+  </div>
+
+  <button type="button" class="btn btn-success" id="meal-adder">Add New Meal!</button>
 
 
   <script type="text/javascript" src='main.js'></script>

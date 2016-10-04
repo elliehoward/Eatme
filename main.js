@@ -3,11 +3,11 @@ var mealsJSON = {
     'breakfast':[
       {
         'name': 'Breakfast Burrito',
-        'ingredients': ['tortilla', 'eggs', 'potatoes', 'cheese', 'onion']
+        'ingredients': {'tortilla': 1, 'eggs': 2, 'potatoes': 1, 'cheese': 0.125, 'onion': 0.5}
       },
       {
         'name': 'Avocado Toast',
-        'ingredients': ['bread', 'avocado', 'hummus']
+        'ingredients': {'bread': 2, 'avocado': 1, 'hummus': 0.25}
       },
       {
         'name': 'Yogurt Parfait',
@@ -72,6 +72,7 @@ function createPanel(mealName, ingredientsList) {
 function appendPanels(mealArray, mealType) {
   for (var i = 0; i < mealArray.length; i++) {
     var currentMeal = mealArray[i]
+    // here you need to loop through the ingredients object with a for in and push to an array, quantities will be added somehow...
     mealType.append(createPanel(currentMeal.name, 'Ingredients: ' + currentMeal.ingredients))
   };
 };
@@ -79,3 +80,27 @@ function appendPanels(mealArray, mealType) {
 appendPanels(breakfastArr, breakfast);
 appendPanels(lunchArr, lunch);
 appendPanels(dinnerArr, dinner);
+
+function appendCustomPanel(brkfastLunchOrDinner, nameOfMeal, listOfIngredients) {
+  var type;
+  if (brkfastLunchOrDinner === 'breakfast') {
+    type = breakfast;
+  } else if (brkfastLunchOrDinner === 'lunch') {
+    type = lunch;
+  }else if (brkfastLunchOrDinner === 'dinner') {
+    type = dinner;
+  };
+  type.append(createPanel(nameOfMeal, listOfIngredients));
+};
+
+$('#meal-adder').on('click', grabInputs)
+
+function grabInputs() {
+  var customMealType = $('input[name=meal-type]:checked').val();
+  var customMealName = $('#meal-name').val();
+  var customIngredients = $('#custom-ingredients').val();
+  appendCustomPanel(customMealType, customMealName, customIngredients);
+  //console.log(customMealType, customMealName, customIngredients)
+  //mealsJSON.meals[customMealType].push({'name': customMealName, 'ingredients': [customIngredients]})
+
+}
