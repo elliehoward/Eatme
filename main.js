@@ -53,13 +53,16 @@ var mealsJSON = {
   }
 
 };
-localStorage.setItem('mealObj', JSON.stringify(mealsJSON));
+if(!localStorage.mealObj) {
+  localStorage.setItem('mealObj', JSON.stringify(mealsJSON));
+}
 var breakfast = $('#saved-meals-breakfast');
 var lunch = $('#saved-meals-lunch');
 var dinner = $('#saved-meals-dinner');
-var breakfastArr = mealsJSON.meals.breakfast;
-var lunchArr = mealsJSON.meals.lunch;
-var dinnerArr = mealsJSON.meals.dinner;
+var mealsParsed = JSON.parse(localStorage.mealObj).meals
+var breakfastArr = mealsParsed.breakfast; // these should be pointing to the object in local storage so custom meals can be added.
+var lunchArr = mealsParsed.lunch; //(populate the meal view from local storage)
+var dinnerArr = mealsParsed.dinner;
 
 function createPanel(mealName, ingredientsList) {
   var panelDiv = $('<div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title">'
@@ -93,8 +96,17 @@ function grabInputs() {
   var customMealType = $('input[name=meal-type]:checked').val();
   var customMealName = $('#meal-name').val();
   var customIngredients = $('#custom-ingredients').val();
+  storeMealsLocally({'name': customMealName, 'ingredients': customIngredients}, customMealType)
   // appendCustomPanel(customMealType, customMealName, customIngredients);
+  // localStorage.setItem('customMeal', "{'name': " + customMealName+ ", 'type': " + customMealType + ", 'ingredients': " + customIngredients + "}" )
 
-  localStorage.setItem('customMeal', "{'name': " + customMealName+ ", 'type': " + customMealType + ", 'ingredients': " + customIngredients + "}" )
+}
+
+function storeMealsLocally(obj, bLD) {
+  var localMeals = JSON.parse(localStorage.mealObj);
+  var respectiveArr = localMeals.meals[bLD];
+  respectiveArr.push(obj);
+  console.log(localMeals);
+  localStorage.mealObj = JSON.stringify(localMeals)
 
 }
