@@ -3,7 +3,7 @@ var mealsJSON = {
     'breakfast':[
       {
         'name': 'Breakfast Burrito',
-        'ingredients': {'tortilla': 1, 'eggs': 2, 'potatoes': 1, 'cheese': 0.125, 'onion': 0.5}
+        'ingredients': {'tortilla': 1, 'eggs': 2, 'potatoes': 1, 'cheese (in cups)': 0.125, 'onion': 0.5}
       },
       {
         'name': 'Avocado Toast',
@@ -53,8 +53,8 @@ var mealsJSON = {
   }
 
 };
-
-var breakfast = $('#saved-meals-brkfast');
+localStorage.setItem('mealObj', JSON.stringify(mealsJSON));
+var breakfast = $('#saved-meals-breakfast');
 var lunch = $('#saved-meals-lunch');
 var dinner = $('#saved-meals-dinner');
 var breakfastArr = mealsJSON.meals.breakfast;
@@ -82,14 +82,8 @@ appendPanels(lunchArr, lunch);
 appendPanels(dinnerArr, dinner);
 
 function appendCustomPanel(brkfastLunchOrDinner, nameOfMeal, listOfIngredients) {
-  var type;
-  if (brkfastLunchOrDinner === 'breakfast') {
-    type = breakfast;
-  } else if (brkfastLunchOrDinner === 'lunch') {
-    type = lunch;
-  }else if (brkfastLunchOrDinner === 'dinner') {
-    type = dinner;
-  };
+
+  var type = $('saved-meals-' + brkfastLunchOrDinner);
   type.append(createPanel(nameOfMeal, listOfIngredients));
 };
 
@@ -99,8 +93,8 @@ function grabInputs() {
   var customMealType = $('input[name=meal-type]:checked').val();
   var customMealName = $('#meal-name').val();
   var customIngredients = $('#custom-ingredients').val();
-  appendCustomPanel(customMealType, customMealName, customIngredients);
-  //console.log(customMealType, customMealName, customIngredients)
-  //mealsJSON.meals[customMealType].push({'name': customMealName, 'ingredients': [customIngredients]})
+  // appendCustomPanel(customMealType, customMealName, customIngredients);
+
+  localStorage.setItem('customMeal', "{'name': " + customMealName+ ", 'type': " + customMealType + ", 'ingredients': " + customIngredients + "}" )
 
 }
