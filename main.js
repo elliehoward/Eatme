@@ -23,14 +23,41 @@ dinner.append(mealList.renderMenu("dinner"));
 
 
 
+//click handler callback for "plus-button" for another ingredient
+
+$('#ingredient-adder').on('click', addIngredientDiv)
+
+function addIngredientDiv(){
+  // create the inputs inside of a div with class custom-ingredients
+  //append things to  $('#ingredient-div');
+  $('#ingredient-div').append('<p>------------------------------------------</p>')
+  var newInputDiv = $('<div class="custom-ingredients"></div>')
+  var newTextInputTag = $('<input type="text" class="form-control" placeholder="name of ingredient..." aria-describedby="basic-addon1"></input>')
+  var newQtyInputTag = $('<input type="number" class="form-control" placeholder="quantity of ingredient..." aria-describedby="basic-addon1"></input>')
+  newInputDiv.append(newTextInputTag);
+  newInputDiv.append(newQtyInputTag);
+  $('#ingredient-div').append(newInputDiv)
+
+
+}
+
+
 
 $('#meal-adder').on('click', grabInputs)
 
 function grabInputs() {
   var customMealType = $('input[name=meal-type]:checked').val();
   var customMealName = $('#meal-name').val();
-  var customIngredients = $('#custom-ingredients').val();
-  var meal = new Meal({'name': customMealName, 'ingredients': customIngredients, 'type': customMealType});
+
+  var customIngredients = $('.custom-ingredients');
+
+  // map over inputs in customIngredients (divs) array and get back an array of Ingredient objects
+  var ingredientsArray = customIngredients.map(function(cur){
+    // create new Ingredient instance based on cur.children (cur is a div with 2 inputs inside)
+    // return that instance (so that it is put into the array by map)
+  })
+
+  var meal = new Meal({'name': customMealName, 'ingredients': ingredientsArray, 'type': customMealType});
   mealList.addMeal(meal);
 }
 
