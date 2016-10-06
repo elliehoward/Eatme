@@ -1,94 +1,28 @@
-var mealsJSON = {
-  'meals': {
-    'breakfast':[
-      {
-        'name': 'Breakfast Burrito',
-        'ingredients': {'tortilla': 1, 'eggs': 2, 'potatoes': 1, 'cheese (in cups)': 0.125, 'onion': 0.5}
-      },
-      {
-        'name': 'Avocado Toast',
-        'ingredients': {'bread': 2, 'avocado': 1, 'hummus': 0.25}
-      },
-      {
-        'name': 'Yogurt Parfait',
-        'ingredients': ['yogurt', 'berries', 'granola']
-      },
-      {
-        'name': 'Fried Potatoes',
-        'ingredients': ['potatoes', 'onion', 'coconut oil', 'avocado', 'cheese']
-      }
-    ],
-    'lunch': [
-      {
-        'name': 'Veggie BLT Sandwich',
-        'ingredients': ['bread', 'facon', 'avocado', 'lettuce', 'tomato', 'mayo']
-      },
-      {
-        'name': 'Veggie Burrito',
-        'ingredients': ['tortilla', 'rice', 'beans', 'cilantro', 'salsa', 'avocado', 'yellow squash', 'lettuce', 'sour cream', 'cheese']
-      },
-      {
-        'name': 'Falafel Wrap',
-        'ingredients': ['tortilla', 'hummus', 'falafel', 'tabboleh', 'onion', 'raddish']
-      },
-      {
-        'name': 'Pasta Salad',
-        'ingredients': ['spiral noodles', 'ranch', 'mayo', 'parsley', 'bell peppers', 'onion']
-      }
-    ],
-    'dinner': [
-      {
-        'name': 'Sweet & Sour Tofu',
-        'ingredients': ['tofu', 'pineapple', 'onion', 'bell peppers', 'soy sauce', 'ketchup', 'rice vinegar', 'corn starch', 'brown sugar', 'garlic', 'ginger']
-      },
-      {
-        'name': 'Spaghetti',
-        'ingredients': ['spaghetti noodles', 'marinara', 'olive oil', 'garlic', 'lettuce', 'cucumber', 'cherry tomatoes', 'ranch']
-      },
-      {
-        'name': 'Self-Made TV Dinner >_<',
-        'ingredients': ['soy chicken nugz', 'potatoes', 'butter', 'corn', 'soymilk', 'ketchup', 'baked beans', 'broccoli']
-      }
-    ]
-  }
+// I want to make meals into instances of a class called meal, I also want to change the layout of a meal to have
+// a name, ingredients with straightforward quantities, a sauce & topping & spices key with all the harder to measure out ingredients as the value.
+// Finally, for the list I will need to loop through the ingreidents in every meal and add up the quantities to display them. Then I will need to do something
+// similar for the topppings section.
 
-};
-if(!localStorage.mealObj) {
-  localStorage.setItem('mealObj', JSON.stringify(mealsJSON));
-}
+
+
+
+
+//pretend mealsJSON came from localcstorange instead
+var mealList = new MealList();
+
+mealList.load();
+
+
 var breakfast = $('#saved-meals-breakfast');
 var lunch = $('#saved-meals-lunch');
 var dinner = $('#saved-meals-dinner');
-var mealsParsed = JSON.parse(localStorage.mealObj).meals
-var breakfastArr = mealsParsed.breakfast; // these should be pointing to the object in local storage so custom meals can be added.
-var lunchArr = mealsParsed.lunch; //(populate the meal view from local storage)
-var dinnerArr = mealsParsed.dinner;
 
-function createPanel(mealName, ingredientsList) {
-  var panelDiv = $('<div class="panel panel-default"> <div class="panel-heading"> <h3 class="panel-title">'
-   + mealName +
-     '</h3> </div> <div class="panel-body">' + ingredientsList + '</div> </div>');
-     return panelDiv;
-};
+breakfast.append(mealList.renderMenu("breakfast"));
+lunch.append(mealList.renderMenu("lunch"));
+dinner.append(mealList.renderMenu("dinner"));
 
 
-function appendPanels(mealArray, mealType) {
-  for (var i = 0; i < mealArray.length; i++) {
-    var currentMeal = mealArray[i]
-    // here you need to loop through the ingredients object with a for in and push to an array, quantities will be added somehow...
-    mealType.append(createPanel(currentMeal.name, 'Ingredients: ' + currentMeal.ingredients))
-  };
-};
 
-appendPanels(breakfastArr, breakfast);
-appendPanels(lunchArr, lunch);
-appendPanels(dinnerArr, dinner);
-
-function appendCustomPanel(brkfastLunchOrDinner, nameOfMeal, listOfIngredients) {
-
-  var type = $('saved-meals-' + brkfastLunchOrDinner);
-  type.append(createPanel(nameOfMeal, listOfIngredients));
-};
 
 $('#meal-adder').on('click', grabInputs)
 
@@ -96,17 +30,12 @@ function grabInputs() {
   var customMealType = $('input[name=meal-type]:checked').val();
   var customMealName = $('#meal-name').val();
   var customIngredients = $('#custom-ingredients').val();
-  storeMealsLocally({'name': customMealName, 'ingredients': customIngredients}, customMealType)
-  // appendCustomPanel(customMealType, customMealName, customIngredients);
-  // localStorage.setItem('customMeal', "{'name': " + customMealName+ ", 'type': " + customMealType + ", 'ingredients': " + customIngredients + "}" )
-
+  var meal = new Meal({'name': customMealName, 'ingredients': customIngredients, 'type': customMealType});
+  mealList.addMeal(meal);
 }
 
-function storeMealsLocally(obj, bLD) {
-  var localMeals = JSON.parse(localStorage.mealObj);
-  var respectiveArr = localMeals.meals[bLD];
-  respectiveArr.push(obj);
-  console.log(localMeals);
-  localStorage.mealObj = JSON.stringify(localMeals)
 
-}
+// keep a count var that keeps track of how many ingredients there are in a custom meal. (starting at one)
+// need two fields, one for name and one for quantities with an add button that creates two more fields for another ingredient
+// increment the counter when the add ingredient button is clicked.
+//
