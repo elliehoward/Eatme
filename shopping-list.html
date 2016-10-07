@@ -19,19 +19,26 @@
         <a class="btn btn-default" href="meal-view.html" role="button">View meals</a>
         <a class="btn btn-default" href="add-meal.html" role="button">Add a meal</a>
         <a class="btn btn-default" href="plan-view.html" role="button">View plan(s)</a>
+        <button type="button" class="btn btn-info" id="load-plan">Load your meal plan!</button>
+        <button type="button" class="btn btn-info" id="load-list">Load your shopping list!</button>
       </div>
     </div>
   </nav>
-  <h3>Welcome to EatMe!
-  <br>
-  Here you can customize meal plans and print out shopping lists
-  <br>
-  that include all the ingredients you need to follow through with
-  <br>
-  your newly created meal plans!</h3>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3 meal-plan'>
+    </div>
+    <div class='col-md-9' id="shopping-list">
+
+    </div>
+  </div>
+</div>
+
+
 
   <script type="text/javascript" src='models.js'></script>
-  <script type="text/javascript" src='loader.js'></script>
+  <script type="text/javascript" src='main.js'></script>
 
 </body>
 </html>
