@@ -160,9 +160,10 @@ MealPlan.prototype.renderPrintableShoppingList = function(){
   var neededIngredients = [];
   for (var i = 0; i < this.days.length; i++) {
     var currentDay = this.days[i]
-    neededIngredients = neededIngredients.concat(currentDay.breakfast.ingredients)
-    neededIngredients = neededIngredients.concat(currentDay.lunch.ingredients)
-    neededIngredients = neededIngredients.concat(currentDay.dinner.ingredients)
+
+    if(currentDay.breakfast) neededIngredients = neededIngredients.concat(currentDay.breakfast.ingredients)
+    if(currentDay.lunch) neededIngredients = neededIngredients.concat(currentDay.lunch.ingredients)
+    if(currentDay.dinner) neededIngredients = neededIngredients.concat(currentDay.dinner.ingredients)
   }
   var ingredientHash = {};
   for (var i = 0; i < neededIngredients.length; i++) {
