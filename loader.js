@@ -42,7 +42,7 @@ var mealsJSON = {
         "type": "lunch"
       },
       {
-        'name': 'Sweet & Sour Tofu',
+        'name': 'Sweet and Sour Tofu',
         'ingredients': [{ name: 'tofu', qty: 1}, { name: 'pineapple', qty: 1}, { name: 'onion', qty: 1}, { name: 'bell peppers', qty: 1}, { name: 'soy sauce', qty: 1}, { name: 'ketchup', qty: 1}, { name: 'rice vinegar', qty: 1}, { name: 'corn starch', qty: 1}, { name: 'brown sugar', qty: 1}, { name: 'garlic', qty: 1}, { name: 'ginger', qty: 1}],
         "type" : "dinner"
       },
@@ -52,7 +52,7 @@ var mealsJSON = {
         "type" : "dinner"
       },
       {
-        'name': 'Self-Made TV Dinner >_<',
+        'name': 'Self-Made TV Dinner',
         'ingredients': [{name: 'soy chicken nugz', qty: 1}, {name: 'potatoes', qty: 1}, {name: 'butter', qty: 1}, {name: 'corn', qty: 1}, {name: 'soymilk', qty: 1}, {name: 'ketchup', qty: 1}, {name: 'baked beans', qty: 1}, {name: 'broccoli', qty: 1}],
         "type" : "dinner"
       }

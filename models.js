@@ -138,7 +138,6 @@ MealPlan.prototype.load = function() {
   var stringifriedDays = localStorage.getItem(this.name)
   this.days = JSON.parse(stringifriedDays).days
   this.name = JSON.parse(stringifriedDays).name
-  //change all plain js objs into their proper classes
   for (var i = 0; i < this.days.length; i++) {
     this.days[i] = new Day(this.days[i]);
     if(this.days[i].breakfast) this.days[i].breakfast = new Meal(this.days[i].breakfast)
@@ -147,9 +146,7 @@ MealPlan.prototype.load = function() {
   }
 }
 
-// this goes on the plan-view
 MealPlan.prototype.renderEditableList = function() {
-  // loop throu days and call renderDroppableView into a container - this is your meal plan
   var planDiv = $('<div class="well">');
   for (var i = 0; i < this.days.length; i++) {
     planDiv.append(this.days[i].renderDroppableView(this))
@@ -159,7 +156,35 @@ MealPlan.prototype.renderEditableList = function() {
 }
 
 //this goes on the shopping list view
-MealPlan.prototype.renderPrintableShoppingList
+MealPlan.prototype.renderPrintableShoppingList = function(){
+  var neededIngredients = [];
+  for (var i = 0; i < this.days.length; i++) {
+    var currentDay = this.days[i]
+    neededIngredients = neededIngredients.concat(currentDay.breakfast.ingredients)
+    neededIngredients = neededIngredients.concat(currentDay.lunch.ingredients)
+    neededIngredients = neededIngredients.concat(currentDay.dinner.ingredients)
+  }
+  var ingredientHash = {};
+  for (var i = 0; i < neededIngredients.length; i++) {
+    if(ingredientHash[neededIngredients[i].name]) {
+      ingredientHash[neededIngredients[i].name].qty += neededIngredients[i].qty
+    } else {
+      ingredientHash[neededIngredients[i].name] = neededIngredients[i]
+    }
+  }
+  var listDiv = $('<div>')
+  for (var key in ingredientHash) {
+    var quan = ingredientHash[key].qty
+
+    var nameIngr = ingredientHash[key].name
+    var ingrDiv = $('<div> (' + quan + ') ' + nameIngr + '</div>')
+
+    listDiv.append(ingrDiv)
+  }
+
+  return listDiv
+}
+
 //loop through all days
 // loop through breakfast, lunch, and dinner's meal ingredients and call render
 // for advanced stuff, figure out how to group ingredients with the same name
@@ -173,13 +198,28 @@ var Day = function(config) {
 
 Day.prototype.renderDroppableView = function (mealPlan) {
   var dayNameDiv = $('<div class="well well-sm">' + this.name + '</div>');
-  var breakfastDiv = $('<div class="well well-sm plan droppable">Breakfast: <p class="droppable">' + this.breakfast.name + '</p> </div>')
-  var lunchDiv = $('<div class="well well-sm plan droppable">Lunch: <p class="droppable">' + this.lunch.name + '</p> </div>')
-  var dinnerDiv = $('<div class="well well-sm plan droppable">Dinner: <p class="droppable">' + this.dinner.name + '</p> </div>')
+  if(this.breakfast) {
+    var breakfastDiv = $('<div class="well well-sm plan droppable">Breakfast: <p class="droppable">' + this.breakfast.name + '</p> </div>')
+  } else {
+    var breakfastDiv = $('<div class="well well-sm plan droppable">Breakfast: <p class="droppable"></p> </div>')
 
+  }
+  if(this.lunch) {
+    var lunchDiv = $('<div class="well well-sm plan droppable">Lunch: <p class="droppable">' + this.lunch.name + '</p> </div>')
+  } else {
+    var lunchDiv = $('<div class="well well-sm plan droppable">Lunch: <p class="droppable"></p> </div>')
+
+  }
+  if(this.dinner) {
+    var dinnerDiv = $('<div class="well well-sm plan droppable">Dinner: <p class="droppable">' + this.dinner.name + '</p> </div>')
+  } else {
+    var dinnerDiv = $('<div class="well well-sm plan droppable">Dinner: <p class="droppable"></p> </div>')
+
+  }
   dayNameDiv.append(breakfastDiv);
   dayNameDiv.append(lunchDiv);
   dayNameDiv.append(dinnerDiv);
+
 
   $( ".draggable" ).draggable();
   dayNameDiv.children().droppable({

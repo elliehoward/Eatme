@@ -37,7 +37,7 @@ function grabInputs() {
   var ingredientsArray = [];
   customIngredients.each(function (){
     var customName = $(this).children('.ingredient-name').val();
-    var customQty = $(this).children('.ingredient-qty').val();
+    var customQty = parseInt($(this).children('.ingredient-qty').val());
     var newIngredient = new Ingredient({name: customName, qty: customQty});
     ingredientsArray.push(newIngredient);
   })
@@ -81,6 +81,7 @@ $( function() {
         var cloned = $(this).parent().clone();
         cloned.children().remove();
         var day = cloned.text().split('y')[0]+'y';
+        console.log(cloned)
         mealPlan.addMeal({day: day, meal: selectedMeal})
       }
     });
@@ -94,3 +95,10 @@ $( function() {
     $('.meal-plan').html(mealPlan.renderEditableList())
 
   })
+
+$('#load-list').on('click', function(){
+  var listDiv = mealPlan.renderPrintableShoppingList();
+  // console.log(listDiv)
+  $('#shopping-list').html(listDiv)
+
+})
