@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>EatMe add a meal</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EatMe add a meal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <nav class="navbar navbar-inverse">
-    <div class="container">
-      <a class="navbar-brand brandi" id='rainbow' href="index.html">EatMe</a>
-      <div class="btn-group navi" role="group" aria-label="...">
-        <a class="btn btn-default" href="index.html" role="button">Main menu</a>
-        <a class="btn btn-default" href="meal-view.html" role="button">View meals</a>
-        <a class="btn btn-default" href="plan-view.html" role="button">View plan(s)</a>
-      </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <a class="navbar-brand brandi" id='rainbow' href="../">EatMe</a>
+            <div class="btn-group navi" role="group" aria-label="...">
+                <a class="btn btn-default" href="../" role="button">Main menu</a>
+                <a class="btn btn-default" href="meal-view.html" role="button">View meals</a>
+                <a class="btn btn-default" href="plan-view.html" role="button">View plan(s)</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <h3>To add a meal: <br>  -Fill out the name field <br>  -Fill out the ingredient and quantity field <br>  -Choose the type of meal <br> <br>To create more ingredient fields, click the + ingredient button.</h3>
+    <div class="input-group">
+        <input id="meal-name" type="text" class="form-control" placeholder="Name of the meal..." aria-describedby="basic-addon1">
     </div>
-  </nav>
+    <br>
+    <button type="button" class="btn btn-info" id='ingredient-adder'> + ingredient</button>
 
-
-
-
-  <h3>To add a meal: <br>  -Fill out the name field <br>  -Fill out the ingredient and quantity field <br>  -Choose the type of meal <br> <br>To create more ingredient fields, click the + ingredient button.</h3>
-  <div class="input-group">
-    <input id="meal-name" type="text" class="form-control" placeholder="Name of the meal..." aria-describedby="basic-addon1">
-  </div>
-  <br>
-  <button type="button" class="btn btn-info" id='ingredient-adder'> + ingredient</button>
-
-  <div class="input-group" id='ingredient-div'>
-    <div class="custom-ingredients">
-      <input type="text" class="form-control ingredient-name" placeholder="name of ingredient..." aria-describedby="basic-addon1">
-      <input type="number" class="form-control ingredient-qty" placeholder="quantity of ingredient..." aria-describedby="basic-addon1">
+    <div class="input-group" id='ingredient-div'>
+        <div class="custom-ingredients">
+            <input type="text" class="form-control ingredient-name" placeholder="name of ingredient..." aria-describedby="basic-addon1">
+            <input type="number" class="form-control ingredient-qty" placeholder="quantity of ingredient..." aria-describedby="basic-addon1">
+        </div>
     </div>
-  </div>
 
-  <div class="radio">
-    <label><input type="radio" name="meal-type" value="breakfast">breakfast</label>
-  </div>
-  <div class="radio">
-    <label><input type="radio" name="meal-type" value="lunch">lunch</label>
-  </div>
-  <div class="radio">
-    <label><input type="radio" name="meal-type" value="dinner">dinner</label>
-  </div>
+    <div class="radio">
+        <label><input type="radio" name="meal-type" value="breakfast">breakfast</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="meal-type" value="lunch">lunch</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="meal-type" value="dinner">dinner</label>
+    </div>
 
-  <button type="button" class="btn btn-success" id="meal-adder">Add New Meal!</button>
+    <button type="button" class="btn btn-success" id="meal-adder">Add New Meal!</button>
 
-  <script type="text/javascript" src='models.js'></script>
-  <script type="text/javascript" src='main.js'></script>
+    <script type="text/javascript" src='models.js'></script>
+    <script type="text/javascript" src='main.js'></script>
 </body>
+
 </html>
