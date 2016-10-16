@@ -1,0 +1,24 @@
+{
+  "name": "eatme",
+  "version": "1.0.0",
+  "description": "meal planner app",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elliehoward/Eatme.git"
+  },
+  "author": "ellie howard",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/elliehoward/Eatme/issues"
+  },
+  "homepage": "https://github.com/elliehoward/Eatme#readme"
+}
