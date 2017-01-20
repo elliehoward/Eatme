@@ -1,10 +1,11 @@
 .navi {
-    margin-top: 8px
+    margin-top: 8px;
 }
 
-.brandi {
-    font-size: 35px;
+.btn-info {
+    background-color: #4d79ff
 }
+
 
 #rainbow {
     background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2), color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22));
@@ -14,7 +15,30 @@
     background-clip: text;
 }
 
-.instructions {
-    margin: 0 auto;
-    max-width: 50em;
+body {
+    font-family: "Helvetica";
+    line-height: 1.5;
+}
+
+.jumbotron {
+    background-image: url(https://be35832fa5168a30acd6-5c7e0f2623ae37b4a933167fe83d71b5.ssl.cf3.rackcdn.com/2104/fruit-and-veg-rainbow__hero.jpg);
+    height: 500px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.image-heading-area {
+    padding-top: 200px;
+    color: white
+}
+
+.image-heading {
+    color: white;
+    text-shadow: 2px 2px #000000
+}
+
+.brandi {
+    font-size: 35px;
 }
