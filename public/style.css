@@ -16,8 +16,33 @@
 }
 
 body {
-    font-family: "Helvetica";
+    font-family: "Aladin";
     line-height: 1.5;
+}
+
+.strawberry {
+margin-bottom: auto;
+width: 45px;
+height: 45px;
+}
+.pear {
+    height: 45px;
+    width: 45px;
+}
+.banana {
+    height: 45px;
+    width: 45px;
+}
+.grape {
+    height: 45px;
+    width: 45px;
+}
+
+.columnz {
+    height: auto;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .jumbotron {
